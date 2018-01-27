@@ -102,15 +102,20 @@ return [
     'custom' => [
         'name' => [
             'required' => '用户名不能为空',
+            'unique'=> '用户名已被占用',
         ],
         'email'=> [
             'required'=> '邮箱不能为空',
+            'unique'=> '邮箱已被占用',
+            'email'=> '务必是可用邮箱',
         ],
         'password' => [
             'required' => '密码不能为空',
+            'confirmed' => '两次密码输入不相符',
         ],
         'password_confirmation' => [
             'required' => '确认密码不能为空',
+
         ],
 
     ],
