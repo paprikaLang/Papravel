@@ -2,9 +2,9 @@
 @section('content')
     <div class="jumbotron">
         <div class="container">
-            <h1>Hello World
-                <a class="btn btn-lg btn-primary pull-right" href="#" role="button">Learn more »</a>
-            </h1>
+            <h3>欢迎来到 Papravel 空间
+                <a class="btn btn-lg btn-primary pull-right" href="#" role="button">发布新帖 »</a>
+            </h3>
         </div>
     </div>
     <div class="container">
