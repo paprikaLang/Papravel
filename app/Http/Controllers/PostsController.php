@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Discussion;
 use App\Http\Requests\PostStoreRequest;
+use App\Markdown\Markdown;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
-    public function __construct()
+    protected $markdown;
+    public function __construct(Markdown $markdown)
     {
         $this->middleware('auth',['only'=>['create','store','edit','update']]);
+        $this->markdown = $markdown;
     }
 
     public function index() {
@@ -33,6 +36,7 @@ class PostsController extends Controller
     }
     public function show($id) {
         $discussion = Discussion::findOrFail($id);
-        return view('forum.show',compact('discussion'));
+        $html = $this->markdown->markdown($discussion->body);
+        return view('forum.show',compact('discussion','html'));
     }
 }
