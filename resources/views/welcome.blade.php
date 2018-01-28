@@ -20,16 +20,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Papravel Dev</a>
+                <a class="navbar-brand" href="/">Papravel Dev</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">首页</a></li>
+                    <li class="active"><a href="/">首页</a></li>
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/user/login">登录</a></li>
-                    <li><a href="/user/register">注册</a></li>
+                    @if(\Illuminate\Support\Facades\Auth::check())
+                        <li><a href="/user/login">{{\Illuminate\Support\Facades\Auth::user()->name}}</a></li>
+                    @else
+                        <li><a href="/user/login">登录</a></li>
+                        <li><a href="/user/register">注册</a></li>
+                    @endif
+
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

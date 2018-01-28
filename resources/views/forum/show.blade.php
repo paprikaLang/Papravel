@@ -5,7 +5,7 @@
             <div class="media">
                 <div class="media-left">
                     <a href="#">
-                        <img class="media-object img-circle" alt="64x64" src="{{$discussion->user->avatar}}" style="width: 64px;">
+                        <img class="media-object img-circle"  src="{{$discussion->user->avatar}}" alt="64*64" style="width: 60px;padding: 5px;">
                     </a>
                 </div>
                 <div class="media-body">
