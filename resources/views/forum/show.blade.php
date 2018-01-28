@@ -9,7 +9,7 @@
                     </a>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading">{{$discussion->title}}</h4>  <a class="btn btn-lg btn-primary pull-right" href="#" role="button">修改帖子 »</a>
+                    <h4 class="media-heading">{{$discussion->title}}</h4>  <a class="btn btn-lg btn-primary pull-right" href="/discussions/{{$discussion->id}}/edit" role="button">修改帖子 »</a>
                     {{$discussion->user->name}}
                 </div>
             </div>

@@ -39,4 +39,13 @@ class PostsController extends Controller
         $html = $this->markdown->markdown($discussion->body);
         return view('forum.show',compact('discussion','html'));
     }
+    public function edit($id){
+        $discussion = Discussion::findOrFail($id);
+        return view('forum.edit',compact('discussion'));
+    }
+    public function update(PostStoreRequest $request,$id){
+        $discussion = Discussion::findOrFail($id);
+        $discussion->update($request->all());
+        return redirect()->action('PostsController@show',['id'=>$discussion->id]);
+    }
 }
