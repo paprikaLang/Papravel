@@ -18,10 +18,7 @@ class PostsController extends Controller
         $discussions = Discussion::all();
         return view('forum.index',compact('discussions'));
     }
-    public function show($id) {
-        $discussion = Discussion::findOrFail($id);
-        return view('forum.show',compact('discussion'));
-    }
+
     public function create() {
         return view('forum.create');
     }
@@ -33,5 +30,9 @@ class PostsController extends Controller
         ];
         $discussion = Discussion::create(array_merge($request->all(),$data));
         return redirect()->action('PostsController@show',['id'=>$discussion->id]);
+    }
+    public function show($id) {
+        $discussion = Discussion::findOrFail($id);
+        return view('forum.show',compact('discussion'));
     }
 }

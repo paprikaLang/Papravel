@@ -19,7 +19,7 @@ class UsersController extends Controller
 
            //保存
 //        User::create($request->all());
-        $user = User::create(array_merge($request->all(),['avatar'=>'images/default_avatar.PNG','confirmation_token'=>str_random(40)]));
+        $user = User::create(array_merge($request->all(),['avatar'=>'public/images/default_avatar.PNG','confirmation_token'=>str_random(40)]));
         $this->sendVerifyEmailTo($user);
         Session::flash('confirm_email','请到邮箱验证您的申请');
         return redirect('/');

@@ -15,16 +15,13 @@ class RedirectIfAuthenticated
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $guard = null)
     {
-      if ($this->auth->guest()){
-          if ($request->ajax()){
-              return response('Unauthorized',401);
-          }else{
-              return redirect()->guest('user/login');
-          }
-      }
+        if (Auth::guard($guard)->check()) {
+            return redirect('/');
+        }
 
         return $next($request);
+
     }
 }
