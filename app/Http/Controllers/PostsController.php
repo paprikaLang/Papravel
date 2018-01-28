@@ -41,6 +41,9 @@ class PostsController extends Controller
     }
     public function edit($id){
         $discussion = Discussion::findOrFail($id);
+        if (Auth::user()->id !== $discussion->user_id){
+            return redirect('/');
+        }
         return view('forum.edit',compact('discussion'));
     }
     public function update(PostStoreRequest $request,$id){
