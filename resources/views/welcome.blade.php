@@ -28,7 +28,7 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="../navbar/">登录</a></li>
+                    <li><a href="/user/login">登录</a></li>
                     <li><a href="/user/register">注册</a></li>
                 </ul>
             </div><!--/.nav-collapse -->

@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\UserLoginRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\User;
 use App\Http\Requests\UserRegisterRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Naux\Mail\SendCloudTemplate;
 class UsersController extends Controller
 {
@@ -16,9 +19,10 @@ class UsersController extends Controller
 
            //保存
 //        User::create($request->all());
-      $user = User::create(array_merge($request->all(),['avatar'=>'images/default_avatar.PNG','confirmation_token'=>str_random(40)]));
-      $this->sendVerifyEmailTo($user);
-//        return redirect('/');
+        $user = User::create(array_merge($request->all(),['avatar'=>'images/default_avatar.PNG','confirmation_token'=>str_random(40)]));
+        $this->sendVerifyEmailTo($user);
+        Session::flash('confirm_email','请到邮箱验证您的申请');
+        return redirect('/');
     }
     public function sendVerifyEmailTo($user){
 //        dd($user->confirmation_token);
@@ -31,5 +35,21 @@ class UsersController extends Controller
             $message->from('langtianyao1102@gmail.com', 'Papravel');
             $message->to($user->email);
         });
+    }
+
+    public function login() {
+        return view('users.login');
+    }
+    public function signIn(UserLoginRequest $request) {
+        if (Auth::attempt([
+            'email'=>$request->get('email'),
+            'password'=>$request->get('password'),
+            'is_confirmed'=>1
+        ])){
+            return redirect('/');
+        }
+        //不光验证login可以在session中储存user_id,视图中也可以提取session中的值@if()@endif
+        Session::flash('user_login_failed','密码不正确或者邮箱没验证');
+        return redirect('/user/login')->withInput();
     }
 }

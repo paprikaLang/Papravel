@@ -2,6 +2,11 @@
 @section('content')
     <div class="jumbotron">
         <div class="container">
+            @if(\Illuminate\Support\Facades\Session::has('confirm_email'))
+                <div class="alert alert-danger" role="alert">
+                    {{\Illuminate\Support\Facades\Session::get('confirm_email')}}
+                </div>
+            @endif
             <h3>欢迎来到 Papravel 空间
                 <a class="btn btn-lg btn-primary pull-right" href="#" role="button">发布新帖 »</a>
             </h3>
