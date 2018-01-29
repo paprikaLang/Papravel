@@ -41,6 +41,7 @@
                     </div>
                 @endforeach
                 <hr>
+                @if(\Illuminate\Support\Facades\Auth::check())
                 {!! Form::open(['url'=>'/comments']) !!}
                 {!! Form::hidden('discussion_id',$discussion->id) !!}
                 <div class="form-group">
@@ -50,6 +51,9 @@
                     {!! Form::submit('发表评论',['class'=>'btn btn-success pull-right']) !!}
                 </div>
                 {!! Form::close() !!}
+                @else
+                    <a href="/user/login" class="btn btn-block btn-success">登录参与评论</a>
+                @endif
             </div>
         </div>
     </div>
