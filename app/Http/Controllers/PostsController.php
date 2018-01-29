@@ -18,7 +18,8 @@ class PostsController extends Controller
     }
 
     public function index() {
-        $discussions = Discussion::all();
+//        $discussions = Discussion::all();
+        $discussions = Discussion::latest()->get();
         return view('forum.index',compact('discussions'));
     }
 

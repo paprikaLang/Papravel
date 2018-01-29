@@ -8,7 +8,7 @@
                 </div>
             @endif
             <h3>欢迎来到 Papravel 空间
-                <a class="btn btn-lg btn-primary pull-right" href="/discussions/create" role="button">发布新帖 »</a>
+                <a class="btn btn-lg btn-danger pull-right" href="/discussions/create" role="button">发布新帖 »</a>
             </h3>
         </div>
     </div>
