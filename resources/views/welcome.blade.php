@@ -5,6 +5,7 @@
         <title>Laravel</title>
         <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet">
         <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet">
         <style>
             .navbar {
                 margin-bottom: 0;
@@ -88,7 +89,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     @if(\Illuminate\Support\Facades\Auth::check())
                         <li class="dropdown">
-                            <a class="dropdown-toggle" aria-haspopup="true" data-toggle="dropdown" href="#">
+                            <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" href="#">
                                 {{\Illuminate\Support\Facades\Auth::user()->name}}<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
