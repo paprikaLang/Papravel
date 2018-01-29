@@ -31,7 +31,7 @@
                     <div class="media">
                         <div class="media-left">
                             <a>
-                                <img class="media-object img-circle" alt="64x64" src="{{$comment->user->avatar}}" style="width: 30px;padding: 2px">
+                                <img class="media-object img-circle" alt="64x64" src="{{$comment->user->avatar}}" style="width:40px;padding: 2px">
                             </a>
                         </div>
                         <div class="media-body">
