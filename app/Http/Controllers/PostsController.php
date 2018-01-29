@@ -33,6 +33,7 @@ class PostsController extends Controller
         ];
         $discussion = Discussion::create(array_merge($request->all(),$data));
         return redirect()->action('PostsController@show',['id'=>$discussion->id]);
+//        $this->show($discussion->id);
     }
     public function show($id) {
         $discussion = Discussion::findOrFail($id);

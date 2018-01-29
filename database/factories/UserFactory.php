@@ -19,7 +19,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'avatar'=> $faker->imageUrl(256,256),
         'confirmation_token'=>str_random(40),
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'password' => bcrypt(str_random(10)), // secret
         'remember_token' => str_random(10),
     ];
 });
@@ -31,5 +31,14 @@ $factory->define(App\Discussion::class, function (Faker $faker) {
         'body' => $faker->paragraph,
         'user_id'=> $faker->randomElement($user_ids),
         'last_user_id' => $faker->randomElement($user_ids),
+    ];
+});
+$factory->define(App\Comment::class, function (Faker $faker) {
+    $user_ids = \App\User::pluck('id')->toArray();
+    $discussion_ids = \App\Discussion::pluck('id')->toArray();
+    return [
+        'body' => $faker->paragraph,
+        'user_id'=> $faker->randomElement($user_ids),
+        'discussion_id' => $faker->randomElement($discussion_ids),
     ];
 });

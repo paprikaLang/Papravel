@@ -18,17 +18,16 @@
                 @foreach($discussions as $discussion)
                    <div class="media">
                    <div class="media-left">
-                   <a href="#">
+                   <a>
                        <img class="media-object img-circle" alt="64*64" src="{{$discussion->user->avatar}}" style="width: 60px;padding: 5px;">
                    </a>
                    </div>
                        <div class="media-body">
-                           <h4 class="media-heading"><a href="/discussions/{{$discussion->id}}" > {{$discussion->title}}</a></h4>
+                           <h4 class="media-heading"><a href="/discussions/{{$discussion->id}}">{{$discussion->title}}</a></h4>
                            {{$discussion->user->name}}
                        </div>
                    </div>
                 @endforeach
-
             </div>
         </div>
     </div>
