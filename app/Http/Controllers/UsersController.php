@@ -100,6 +100,24 @@ class UsersController extends Controller
            Session::flash('wrong_type_image','图片格式为JPG, PNG, jpg, png');
        }
         return redirect('/user/avatar');
+    }
+    public function pw() {
+        return view('users.pw');
+    }
+    public function change(Request $request) {
+        $password = $request->get('password');
+        $confirm_password = $request->get('confirm_password');
+        if ($password !== $confirm_password){
+            Session::flash('not_same','两次输入的密码不一致');
+            return redirect()->action('UsersController@pw');
+        }
+        $user = User::find(Auth::user()->id);
+        $user->password = $password;
+        if(!$user->save()){
+            Session::flash('not_success','密码更改不成功,请重新输入');
+            return redirect()->action('UsersController@pw');
+        }
+        return redirect()->action('UsersController@logout');
 
     }
 }
