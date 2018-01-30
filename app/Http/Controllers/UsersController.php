@@ -8,6 +8,7 @@ use App\User;
 use App\Http\Requests\UserRegisterRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Image;
 use Naux\Mail\SendCloudTemplate;
 class UsersController extends Controller
 {
@@ -61,6 +62,10 @@ class UsersController extends Controller
     }
     public function reset(Request $request) {
        $file = $request->file('avatar');
+       if (!$file){
+           Session::flash('image_empty','图片为空');
+           return redirect('/user/avatar');
+       }
        if ( $file->getClientMimeType() === 'image/png' ||
            $file->getClientMimeType() === 'image/jpg' ||
            $file->getClientMimeType() === 'image/PNG' ||
@@ -69,6 +74,7 @@ class UsersController extends Controller
            $destinationPath = 'uploads/';
            $filename =Auth::user()->id.'_'.time().$file->getClientOriginalName();
            $file -> move($destinationPath,$filename);
+           Image::make($destinationPath.$filename)->fit(200)->save();
            $user = User::find(Auth::user()->id);
            $user->avatar = '/'.$destinationPath.$filename;
            $user->save();

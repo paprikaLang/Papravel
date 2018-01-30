@@ -14,6 +14,11 @@
                             {{\Illuminate\Support\Facades\Session::get('wrong_type_image')}}
                         </div>
                     @endif
+                    @if(\Illuminate\Support\Facades\Session::has('image_empty'))
+                        <div class="alert alert-danger" role="alert">
+                            {{\Illuminate\Support\Facades\Session::get('image_empty')}}
+                        </div>
+                    @endif
                     <div>
                         {!! Form::submit('上传头像',['class'=>'btn btn-success pull-right']) !!}
                     </div>
