@@ -56,4 +56,29 @@ class UsersController extends Controller
         Auth::logout();
         return redirect('/');
     }
+    public function avatar() {
+        return view('users.avatar');
+    }
+    public function reset(Request $request) {
+       $file = $request->file('avatar');
+       if ( $file->getClientMimeType() === 'image/png' ||
+           $file->getClientMimeType() === 'image/jpg' ||
+           $file->getClientMimeType() === 'image/PNG' ||
+           $file->getClientMimeType() === 'image/JPG'){
+
+           $destinationPath = 'uploads/';
+           $filename =Auth::user()->id.'_'.time().$file->getClientOriginalName();
+           $file -> move($destinationPath,$filename);
+           $user = User::find(Auth::user()->id);
+           $user->avatar = '/'.$destinationPath.$filename;
+           $user->save();
+
+       }else{
+           Session::flash('wrong_type_image','图片格式为JPG,PNG,jpg,png');
+       }
+        return redirect('/user/avatar');
+
+
+
+    }
 }
