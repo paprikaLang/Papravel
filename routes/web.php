@@ -14,3 +14,4 @@ Route::get('/email/verify/{token}',['as'=>'email.verify','uses'=>'EmailControlle
 
 Route::resource('comments','CommentsController');
 Route::resource('discussions','PostsController');
+Route::post('post/upload','PostsController@upload');

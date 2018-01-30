@@ -497,7 +497,7 @@
 	$.fn.fileUpload = function(settings) {
 		this.each(function(i, el) {
 			if ($(el).is('input[type=file]')) {
-				log('INFO: binding onchange event to a input[type=file].');
+			console.log('INFO: binding onchange event to a input[type=file].');
 				$(el).bind(
 					'change',
 					function () {
@@ -507,10 +507,10 @@
                             }
                             return;
                         } else if (!this.files.length) {
-							log('ERROR: no file selected.');
+                            console.log('ERROR: no file selected.');
 							return;
 						} else if (this.files.length > 1) {
-							log('WARN: Multiple file upload not implemented yet, only first file will be uploaded.');
+                            console.log('WARN: Multiple file upload not implemented yet, only first file will be uploaded.');
 						}
 
                         settings.name = $(this).attr('name');
@@ -519,7 +519,7 @@
 						if (this.form) {
 							this.form.reset();
 						} else {
-							log('WARN: Unable to reset file selection, upload won\'t be triggered again if user selects the same file.');
+                            console.log('WARN: Unable to reset file selection, upload won\'t be triggered again if user selects the same file.');
 						}
 						return;
 					}
@@ -527,9 +527,9 @@
 			}
 
 			if ($(el).is('form')) {
-				log('ERROR: <form> not implemented yet.');
+                console.log('ERROR: <form> not implemented yet.');
 			} else {
-				log('INFO: binding ondrop event.');
+                console.log('INFO: binding ondrop event.');
 				$(el).bind(
 					'dragover', // dragover behavior should be blocked for drop to invoke.
 					function(ev) {
@@ -539,15 +539,15 @@
 					'drop',
 					function (ev) {
 						if (!ev.originalEvent.dataTransfer.files) {
-							log('ERROR: No FileList object present; user might had dropped text.');
+                            console.log('ERROR: No FileList object present; user might had dropped text.');
 							return false;
 						}
 						if (!ev.originalEvent.dataTransfer.files.length) {
-							log('ERROR: User had dropped a virual file (e.g. "My Computer")');
+                            console.log('ERROR: User had dropped a virual file (e.g. "My Computer")');
 							return false;
 						}
 						if (!ev.originalEvent.dataTransfer.files.length > 1) {
-							log('WARN: Multiple file upload not implemented yet, only first file will be uploaded.');
+                            console.log('WARN: Multiple file upload not implemented yet, only first file will be uploaded.');
 						}
 						handleFile($.extend({}, config, settings), ev.originalEvent.dataTransfer.files[0]);
 						return false;

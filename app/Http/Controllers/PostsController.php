@@ -7,6 +7,7 @@ use App\Http\Requests\PostStoreRequest;
 use App\Markdown\Markdown;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use YuanChao\Editor\EndaEditor;
 
 class PostsController extends Controller
 {
@@ -56,5 +57,10 @@ class PostsController extends Controller
         $discussion = Discussion::findOrFail($id);
         $discussion->update($request->all());
         return redirect()->action('PostsController@show',['id'=>$discussion->id]);
+    }
+    public function upload() {
+        $data = EndaEditor::uploadImgFile('uploads');
+
+        return json_encode($data);
     }
 }

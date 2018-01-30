@@ -1,5 +1,6 @@
 @extends('welcome')
 @section('content')
+    @include('editor::head')
     <div class="container">
         <div class="row">
             <br>
