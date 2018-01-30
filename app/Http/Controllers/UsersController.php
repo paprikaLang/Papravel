@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\UserLoginRequest;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\User;
 use App\Http\Requests\UserRegisterRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 use Image;
 use Naux\Mail\SendCloudTemplate;
 class UsersController extends Controller
@@ -62,8 +64,19 @@ class UsersController extends Controller
     }
     public function reset(Request $request) {
        $file = $request->file('avatar');
+//       $input = array('image'=>$file);
+//       $rules = array(
+//           'image'=>'image'
+//       );
+//       $validator = Validator::make($input,$rules);
+//       if ($validator->fails()){
+//           return Response::json([
+//               'success'=> false,
+//               'errors' => $validator->getMessageBag()->toArray()
+//           ]);
+//       }
        if (!$file){
-           Session::flash('image_empty','图片为空');
+           Session::flash('image_empty','请选择一张图片');
            return redirect('/user/avatar');
        }
        if ( $file->getClientMimeType() === 'image/png' ||
@@ -78,13 +91,15 @@ class UsersController extends Controller
            $user = User::find(Auth::user()->id);
            $user->avatar = '/'.$destinationPath.$filename;
            $user->save();
+//           return Response::json([
+//               'success'=> true,
+//               'avatar'=> asset($destinationPath.$filename)
+//           ]);
 
        }else{
-           Session::flash('wrong_type_image','图片格式为JPG,PNG,jpg,png');
+           Session::flash('wrong_type_image','图片格式为JPG, PNG, jpg, png');
        }
         return redirect('/user/avatar');
-
-
 
     }
 }

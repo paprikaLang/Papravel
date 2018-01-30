@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <br>
-            <div class="col-md-7 col-md-offset-3" role="main">
+            <div class="col-md-13 col-md-offset-1" role="main">
                 {!! Form::model($discussion,['method'=>'PATCH','url'=>'/discussions/'.$discussion->id]) !!}
                 @include('forum.form')
                 <div>
