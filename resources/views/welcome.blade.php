@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
         <title>Laravel</title>
         <script src="https://cdn.bootcss.com/jquery/3.3.0/jquery.min.js"></script>
         <script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -89,10 +90,11 @@
 
                 {{--</ul>--}}
                 <ul class="nav navbar-nav navbar-right">
-                    @if(\Illuminate\Support\Facades\Auth::check())
+                    @if(\Auth::check())
+
                         <li class="dropdown">
                             <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" href="#">
-                                {{\Illuminate\Support\Facades\Auth::user()->name}}<b class="caret"></b>
+                                {{\Auth::user()->name}}<b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                 <li><a href="/user/avatar"> <i class="fa fa-user"></i> 更换头像</a></li>
@@ -103,7 +105,7 @@
                             </ul>
                         </li>
                         <li>
-                           <img src="{{\Illuminate\Support\Facades\Auth::user()->avatar}}" class="img-circle" width="50" alt="">
+                           <img src="{{ \Auth::user()->avatar}}" class="img-circle" width="50" alt="">
                         </li>
                         {{--<li>--}}
                             {{--<a href="/user/logout">退出登录</a>--}}

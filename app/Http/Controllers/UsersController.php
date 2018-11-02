@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Image;
 use Naux\Mail\SendCloudTemplate;
+
 class UsersController extends Controller
 {
     public function register()
@@ -44,19 +45,23 @@ class UsersController extends Controller
         return view('users.login');
     }
     public function signIn(UserLoginRequest $request) {
-        if (Auth::attempt([
+        if (\Auth::attempt([
             'email'=>$request->get('email'),
             'password'=>$request->get('password'),
             'is_confirmed'=>1
         ])){
-            return redirect('/');
+            // dd(\Auth::check()); true
+             \Auth::check();
+             return redirect('/');
+          
+            
         }
         //不光验证login可以在session中储存user_id,视图中也可以提取session中的值@if()@endif
-        Session::flash('user_login_failed','密码不正确或者邮箱没验证');
+        \Session::flash('user_login_failed','密码不正确或者邮箱没验证');
         return redirect('/user/login')->withInput();
     }
     public function logout() {
-        Auth::logout();
+        \Auth::logout();
         return redirect('/');
     }
     public function avatar() {
@@ -76,7 +81,7 @@ class UsersController extends Controller
 //           ]);
 //       }
        if (!$file){
-           Session::flash('image_empty','请选择一张图片');
+           \Session::flash('image_empty','请选择一张图片');
            return redirect('/user/avatar');
        }
        if ( $file->getClientMimeType() === 'image/png' ||
@@ -97,7 +102,7 @@ class UsersController extends Controller
 //           ]);
 
        }else{
-           Session::flash('wrong_type_image','图片格式为JPG, PNG, jpg, png');
+           \Session::flash('wrong_type_image','图片格式为JPG, PNG, jpg, png');
        }
         return redirect('/user/avatar');
     }

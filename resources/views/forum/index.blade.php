@@ -2,9 +2,9 @@
 @section('content')
     <div class="jumbotron">
         <div class="container">
-            @if(\Illuminate\Support\Facades\Session::has('confirm_email'))
+            @if(Session::has('confirm_email'))
                 <div class="alert alert-danger" role="alert">
-                    {{\Illuminate\Support\Facades\Session::get('confirm_email')}}
+                    {{Session::get('confirm_email')}}
                 </div>
             @endif
             <h3>欢迎来到 Papravel 空间

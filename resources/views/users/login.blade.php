@@ -10,17 +10,18 @@
                         @endforeach
                     </ul>
                 @endif
-                    @if(\Illuminate\Support\Facades\Session::has('user_login_failed'))
+                    @if(Session::has('user_login_failed'))
                     <div class="alert alert-danger" role="alert">
-                        {{\Illuminate\Support\Facades\Session::get('user_login_failed')}}
+                        {{Session::get('user_login_failed')}}
                     </div>
                     @endif
-                    @if(\Illuminate\Support\Facades\Session::has('email_confirmed'))
+                    @if(Session::has('email_confirmed'))
                         <div class="alert alert-success" role="alert">
-                            {{\Illuminate\Support\Facades\Session::get('email_confirmed')}}
+                            {{Session::get('email_confirmed')}}
                         </div>
                     @endif
                 {!! Form::open(['url'=>'/user/login']) !!}
+                    {{ csrf_field() }}
                 <div class="form-group">
                     {!! Form::label('email','Email:') !!}
                     {!! Form::email('email',null,['class'=>'form-control']) !!}
