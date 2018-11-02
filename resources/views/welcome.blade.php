@@ -82,7 +82,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">Papravel Dev</a>
+                <a class="navbar-brand" href="/" style="font-size: 40px;">Papravel Dev</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 {{--<ul class="nav navbar-nav">--}}
@@ -104,7 +104,7 @@
                                 <li> <a href="/user/logout">  <i class="fa fa-sign-out"></i> 退出登录</a></li>
                             </ul>
                         </li>
-                        <li>
+                        <li style="margin-left: 10px;">
                            <img src="{{ \Auth::user()->avatar}}" class="img-circle" width="50" alt="">
                         </li>
                         {{--<li>--}}
